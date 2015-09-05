@@ -1,0 +1,28 @@
+{
+  "name": "zookeepr-client-nodejs",
+  "version": "0.0.1",
+  "description": "A ZooKeeper client for Node.js.",
+  "author": "Minwoo Jung <jmwsoft@gmail.com>",
+  "main": "index.js",
+  "keywords": [
+    "zookeeper",
+    "client",
+    "javascript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JungMinu/zookeepr-client-nodejs"
+  },
+  "scripts": {
+    "pretest": "jslint --node --sloppy index.js lib/*.js lib/jute/*.js",
+    "test": "mocha --recursive --reporter spec test/*",
+    "coverage": "istanbul cover _mocha --recursive test/*"
+  },
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "dependencies": {
+    "underscore": "~1.4.4",
+    "async": "~0.2.7"
+  }
+}
