@@ -1,5 +1,5 @@
 {
-  "name": "node-zookeeper-client",
+  "name": "zookeepr-client-nodejs",
   "version": "0.0.1",
   "description": "A ZooKeeper client for Node.js.",
   "author": "Minwoo Jung <jmwsoft@gmail.com>",
