@@ -1,0 +1,12 @@
+2015-08-11 05:18:35,654 [myid:] - INFO  [main:QuorumPeerConfig@103] - Reading configuration from: /Users/DevelopLee/Mongo_study/Zoo/nodejs-mongodb-zookeeper/zoo/zoo_cluster/zookeeper1/zookeeper-3.4.6/bin/../conf/zoo.cfg
+2015-08-11 05:18:35,657 [myid:] - INFO  [main:QuorumPeerConfig@340] - Defaulting to majority quorums
+2015-08-11 05:18:35,658 [myid:] - ERROR [main:QuorumPeerMain@85] - Invalid config, exiting abnormally
+org.apache.zookeeper.server.quorum.QuorumPeerConfig$ConfigException: Error processing /Users/DevelopLee/Mongo_study/Zoo/nodejs-mongodb-zookeeper/zoo/zoo_cluster/zookeeper1/zookeeper-3.4.6/bin/../conf/zoo.cfg
+	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parse(QuorumPeerConfig.java:123)
+	at org.apache.zookeeper.server.quorum.QuorumPeerMain.initializeAndRun(QuorumPeerMain.java:101)
+	at org.apache.zookeeper.server.quorum.QuorumPeerMain.main(QuorumPeerMain.java:78)
+Caused by: java.lang.IllegalArgumentException: ./../../../zookeeper1_data/myid file is missing
+	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parseProperties(QuorumPeerConfig.java:350)
+	at org.apache.zookeeper.server.quorum.QuorumPeerConfig.parse(QuorumPeerConfig.java:119)
+	... 2 more
+Invalid config, exiting abnormally
