@@ -1,17 +1,5 @@
 var zookeeper = require('node-zookeeper-client');
 
-// JSON을 Stirng으로 변환
-function JSONtoString(object) {
-    var results = [];
-    for (var property in object) {
-        var value = object[property];
-        if (value)
-            results.push(property.toString() + ': ' + value);
-    }
-                                                 
-    return '{' + results.join(', ') + '}';
-}
-
 function Dispatcher(zkClient, rsPort, NodeCreatedEventHandler, NodeDeletedEventHandler, znode, zkRsPath, isStoreState) {
     zkClient.exists(
     znode,
@@ -54,14 +42,25 @@ function watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler, MongoConfig
     }
 }
 
-exports.start = function(rsArray, rsStateEventHandler, MongoConfig, zkRsPath, zkHost) {
+function JSONtoString(object) {
+    var results = [];
+    for (var property in object) {
+        var value = object[property];
+        if (value)
+            results.push(property.toString() + ': ' + value);
+    }
+                                                 
+    return '{' + results.join(', ') + '}';
+}
+
+exports.start = function(rsArray, rsStateEventHandler, zkRsPath, zkHost) {
 
     console.log('Zookeeper_Watcher operate');
 	var zkClient = zookeeper.createClient(zkHost);
 
 	zkClient.once('connected', function () {
 		console.log('Zookeeper_Watcher Connected to ZooKeeper.');
-		watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler, MongoConfig, zkRsPath);
+		watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler, zkRsPath);
 	});
 
 	zkClient.connect();
