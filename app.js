@@ -7,7 +7,6 @@ var rsLauncher = gk.rsLauncher;
 var rsStateWatcher = gk.rsStateWatcher.rsStateWatcher;
 var rsStateEventHandler = gk.rsStateWatcher.EventHandler;
 
-var MongoConfig = config.MongoConfig;
 var rsArray = config.rsArray;
 
 var zkConfig = config.zkConfig;
@@ -33,7 +32,7 @@ zkServerStart.on('start', function() {
     }
 });
 
-// Zookeeper cluster server, replica set mongod 실행
+// Zookeeper cluster server 실행
 async.series([    
     function asyncZkServerStart(cb) {
         zkServerStart.emit('start');
