@@ -6,12 +6,9 @@ ZooKeeper version 3.4.*과 호환됩니다
 
 ---
 
-## 설치
+## app.js
 
-npm을 활용하여 다음과 같이 설치합니다
-```bash
-$ npm install node-zookeeper-client
-```
+Zookeeper clustering, Node.js 코디네이션 모듈
 
 ## 예제
 
