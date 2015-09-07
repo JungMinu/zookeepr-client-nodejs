@@ -1,3 +1,4 @@
+var exc = require('child_process').exec;
 var zooArray = [
         {
             "host": "localhost:2181",
@@ -16,7 +17,7 @@ var zooArray = [
 var zoonum = zooArray.length;
 
 for (var i = 0; i < zoonum; i++) {
-        exec("sudo " + zooArray[i].path + "zkServer.sh start", function(error, stdout, stderr) {
+        exc("sudo " + zooArray[i].path + "zkServer.sh start", function(error, stdout, stderr) {
             console.log(stdout);
         });
 }
