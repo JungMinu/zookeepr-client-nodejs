@@ -31,11 +31,11 @@ var async = require('async');
     async.series([    
      function asyncZkServerStart(cb) {
         zkServerStart.emit('start');
-        cb(null, "zkServer start");
+        cb(null, "start");
     }
 
 ], function done(error, results) {
-   console.log('Zookeeper_Watcher operate');
+   console.log('Zookeeper_Watcher 시작');
     
 var zookeeper = require('node-zookeeper-client');
 
@@ -47,5 +47,5 @@ for (var i = 1; i < zooArray.length; i++) {
     var zkClient = zookeeper.createClient(zkHost);
 \
     zkClient.connect();
-    console.log('Watcher Started');
+    console.log('Watcher 연결됨');
 });
