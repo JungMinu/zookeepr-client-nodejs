@@ -9,14 +9,6 @@ ZooKeeper version 3.4.*과 호환됩니다
 ## app.js
 
 Zookeeper clustering, Node.js 코디네이션 모듈
-// zookeeper server Cluster 실행
-ServerStart.on('start', function() {
-    for (var i = 0; i < QuorumNum; i++) {
-        exec("sudo " + zkArray[i].path + "zkServer.sh start", function(error, stdout, stderr) {
-            console.log(stdout);
-        });
-    }
-});
 
 ## 예제
 
