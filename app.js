@@ -45,7 +45,7 @@ for (var i = 1; i < zooArray.length; i++) {
     zkHost = zkHost + "," + zooArray[i].host;
 }
     var zkClient = zookeeper.createClient(zkHost);
-\
+
     zkClient.connect();
     console.log('Watcher 연결됨');
 });
