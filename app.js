@@ -15,9 +15,37 @@ var zooArray = [
     ];
 
 var zoonum = zooArray.length;
+var EventEmitter = require('events').EventEmitter;
+var zkServerStart = new EventEmitter();
 
-for (var i = 0; i < zoonum; i++) {
+// Cluster 실행
+zkServerStart.on('start', function() {
+     for (var i = 0; i < zoonum; i++) {
         exc("sudo " + zooArray[i].path + "zkServer.sh start", function(error, stdout, stderr) {
             console.log(stdout);
         });
+    }
+});
+
+var async = require('async');
+    async.series([    
+     function asyncZkServerStart(cb) {
+        zkServerStart.emit('start');
+        cb(null, "zkServer start");
+    }
+
+], function done(error, results) {
+   console.log('Zookeeper_Watcher operate');
+    
+var zookeeper = require('node-zookeeper-client');
+
+var zkHost = zooArray[0].host;
+
+for (var i = 1; i < zooArray.length; i++) {
+    zkHost = zkHost + "," + zooArray[i].host;
 }
+    var zkClient = zookeeper.createClient(zkHost);
+\
+    zkClient.connect();
+    console.log('Watcher Started');
+});
