@@ -114,3 +114,13 @@ zookeeper.create(
 ```
 
 ---
+### Zookeeper 클러스터링
+#### Zookeeper 서버, 클라이언트 실행파일 및 설정정보
+주키퍼는 3개의 서버로 클러스터링 되어 실행됩니다.<br>
+.
+```
+Cluster1: ./zoo/zoo_cluster/zookeeper1/zookeeper-3.4.6/bin/zkServer.sh
+Cluster2: ./zoo/zoo_cluster/zookeeper2/zookeeper-3.4.6/bin/zkServer.sh
+Cluster3: ./zoo/zoo_cluster/zookeeper3/zookeeper-3.4.6/bin/zkServer.sh
+```
+```
