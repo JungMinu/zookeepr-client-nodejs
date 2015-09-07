@@ -3,30 +3,30 @@ var exec = require('child_process').exec;
 
 var gk = require("./common");
 var config = gk.config;
-var rsLauncher = gk.rsLauncher;
-var rsStateWatcher = gk.rsStateWatcher.rsStateWatcher;
-var rsStateEventHandler = gk.rsStateWatcher.EventHandler;
+var smLauncher = gk.smLauncher;
+var smStateWatcher = gk.smStateWatcher.smStateWatcher;
+var smStateEventHandler = gk.smStateWatcher.EventHandler;
 
-var rsArray = config.rsArray;
+var smArray = config.smArray;
 
-var zkConfig = config.zkConfig;
-var zkRsPath = zkConfig.RsPath;
-var zkArray = config.zkArray;
-var QuorumNum = zkArray.length;
+var zooConfig = config.zooConfig;
+var zoosmPath = zooConfig.smPath;
+var zooArray = config.zooArray;
+var QuorumNum = zooArray.length;
 
-var zkHost = zkArray[0].host;
-for (var i = 1; i < zkArray.length; i++) {
-    zkHost = zkHost + "," + zkArray[i].host;
+var zooHost = zooArray[0].host;
+
+for (var i = 1; i < zooArray.length; i++) {
+    zooHost = zooHost + "," + zooArray[i].host;
 }
 
 var EventEmitter = require('events').EventEmitter;
-var zkServerStart = new EventEmitter();
+var zooServesmtart = new EventEmitter();
 var MongoStart = new EventEmitter();
 
-// zookeeper server Cluster 실행
-zkServerStart.on('start', function() {
+zooServesmtart.on('start', function() {
     for (var i = 0; i < QuorumNum; i++) {
-        exec("sudo " + zkArray[i].path + "zkServer.sh start", function(error, stdout, stderr) {
+        exec("sudo " + zooArray[i].path + "zooServer.sh start", function(error, stdout, stderr) {
             console.log(stdout);
         });
     }
@@ -34,13 +34,13 @@ zkServerStart.on('start', function() {
 
 // Zookeeper cluster server 실행
 async.series([    
-    function asyncZkServerStart(cb) {
-        zkServerStart.emit('start');
-        cb(null, "zkServer start");
+    function asynczooServesmtart(cb) {
+        zooServesmtart.emit('start');
+        cb(null, "zooServer start");
     },
     
 ], function done(error, results) {
-    console.log('error: ', error);
-    rsStateWatcher.start(rsArray, rsStateEventHandler, MongoConfig, zkRsPath, zkHost);
-    console.log('Watcher Start');
+    console.log('err: ', error);
+    smStateWatcher.start(smArray, smStateEventHandler, MongoConfig, zoosmPath, zooHost);
+
 });
