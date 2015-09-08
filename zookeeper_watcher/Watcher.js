@@ -30,7 +30,7 @@ function Dispatcher(zkClient, rsPort, NodeCreatedEventHandler, NodeDeletedEventH
 } 
 
 // Watcher 로직을 실행한다.
-function watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler, MongoConfig, zkRsPath) {
+function watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler,zkRsPath) {
     var rsNum = rsArray.length;
     var isStoreState = true;
     var NodeCreatedEventHandler = rsStateEventHandler.NodeCreatedEventHandler;
