@@ -36,10 +36,6 @@ var async = require('async');
 
 ], function done(error, results) {
    console.log('Zookeeper_Watcher 시작');
-    
-var zookeeper = require('node-zookeeper-client');
-
-var zkHost = zooArray[0].host;
 
 for (var i = 1; i < zooArray.length; i++) {
     zkHost = zkHost + "," + zooArray[i].host;
