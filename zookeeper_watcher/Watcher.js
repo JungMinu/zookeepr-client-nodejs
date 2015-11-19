@@ -41,27 +41,3 @@ function watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler,zkRsPath) {
         Dispatcher(zkClient, rsArray[i].port, NodeCreatedEventHandler, NodeDeletedEventHandler, znode, zkRsPath, isStoreState);
     }
 }
-
-function JSONtoString(object) {
-    var results = [];
-    for (var property in object) {
-        var value = object[property];
-        if (value)
-            results.push(property.toString() + ': ' + value);
-    }
-                                                 
-    return '{' + results.join(', ') + '}';
-}
-
-exports.start = function(rsArray, rsStateEventHandler, zkRsPath, zkHost) {
-
-    console.log('Zookeeper_Watcher operate');
-	var zkClient = zookeeper.createClient(zkHost);
-
-	zkClient.once('connected', function () {
-		console.log('Zookeeper_Watcher Connected to ZooKeeper.');
-		watchAndStoreRsStat(zkClient, rsArray, rsStateEventHandler, zkRsPath);
-	});
-
-	zkClient.connect();
-}
